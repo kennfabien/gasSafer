@@ -18,6 +18,7 @@ import {
   sendLocalSafeAlert,
 } from '../../services/notifications';
 import React from 'react';
+import AppHeader from '@/components/AppHeader';
 
 const BACKEND_URL = 'https://jacket-astonish-charity.ngrok-free.dev';
 
@@ -138,7 +139,7 @@ export default function Dashboard() {
   return (
     <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
 
-      <Header showLogo showMenu showCart />
+<AppHeader sensorOnline={sensorOnline} />
 
       {/* RESOLVED BANNER */}
       {alertStatus === 'resolved' && (
@@ -488,4 +489,41 @@ const styles = StyleSheet.create({
     fontSize: 11, color: '#bbb',
     textAlign: 'center', marginBottom: 8,
   },
+  systemStatusCard: {
+  flexDirection: 'row',
+  justifyContent: 'space-between',
+  alignItems: 'center',
+  backgroundColor: '#FFFFFF',
+  borderRadius: 14,
+  padding: 14,
+  marginBottom: 14,
+  borderWidth: 1,
+  borderColor: '#E5E7EB',
+},
+
+systemStatusLeft: {
+  flexDirection: 'row',
+  alignItems: 'center',
+},
+
+systemTitle: {
+  fontSize: 15,
+  fontWeight: '600',
+  color: '#111827',
+  marginLeft: 10,
+},
+
+systemSubtitle: {
+  fontSize: 12,
+  color: '#6B7280',
+  marginLeft: 10,
+  marginTop: 2,
+},
+
+onlineDot: {
+  width: 10,
+  height: 10,
+  borderRadius: 5,
+  backgroundColor: '#22C55E',
+},
 });

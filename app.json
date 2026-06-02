@@ -22,7 +22,8 @@
       },
       "permissions": [
         "CALL_PHONE"
-      ]
+      ],
+      "package": "com.promisleo.gasSafer"
     },
     "web": {
       "bundler": "metro",
@@ -36,6 +37,12 @@
     ],
     "experiments": {
       "typedRoutes": true
+    },
+    "extra": {
+      "router": {},
+      "eas": {
+        "projectId": "3166f3cd-fb65-4bf0-a9fc-ae4427d4a597"
+      }
     }
   }
 }

@@ -1,116 +1,135 @@
 // components/Header.tsx
+
+import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { router } from 'expo-router';
 import { COLORS } from '../constants';
-import React from 'react';
 
 type HeaderProps = {
   title?: string;
   showLogo?: boolean;
   showBack?: boolean;
-  showCart?: boolean;
-  showMenu?: boolean;
+  showHistory?: boolean;
+  showSettings?: boolean;
 };
 
 export default function Header({
   title,
   showLogo = false,
   showBack = false,
-  showCart = false,
-  showMenu = false,
+  showHistory = false,
+  showSettings = false,
 }: HeaderProps) {
   return (
     <View style={styles.container}>
-
-      {/* Left side */}
+      {/* Left */}
       <View style={styles.left}>
         {showBack && (
           <TouchableOpacity
             onPress={() => router.back()}
-            style={styles.iconBtn}
+            style={styles.iconButton}
           >
-            <Ionicons name="arrow-back" size={24} color={COLORS.primary} />
+            <Ionicons
+              name="arrow-back"
+              size={22}
+              color={COLORS.primary}
+            />
           </TouchableOpacity>
         )}
 
-        {showLogo && (
-          <View style={styles.logoRow}>
-            <Ionicons name="shield-checkmark" size={22} color={COLORS.primary} />
-            <Text style={styles.logoText}>GasSafer</Text>
+        {showLogo ? (
+          <View style={styles.logoContainer}>
+            <Ionicons
+              name="shield-checkmark"
+              size={24}
+              color={COLORS.primary}
+            />
+            <Text style={styles.logoText}>GasSafe Monitor</Text>
           </View>
-        )}
-
-        {title && !showLogo && (
+        ) : (
           <Text style={styles.title}>{title}</Text>
         )}
       </View>
 
-      {/* Right side */}
+      {/* Right */}
       <View style={styles.right}>
-        {showCart && (
+        {showHistory && (
           <TouchableOpacity
+            style={styles.iconButton}
             onPress={() => router.push('/history')}
-            style={styles.iconBtn}
           >
-            <Ionicons name="time-outline" size={24} color={COLORS.primary} />
+            <Ionicons
+              name="document-text-outline"
+              size={22}
+              color="#374151"
+            />
           </TouchableOpacity>
         )}
 
-        {showMenu && (
+        {showSettings && (
           <TouchableOpacity
+            style={styles.iconButton}
             onPress={() => router.push('/settings')}
-            style={styles.iconBtn}
           >
-            <Ionicons name="menu" size={26} color="#333" />
+            <Ionicons
+              name="settings-outline"
+              size={22}
+              color="#374151"
+            />
           </TouchableOpacity>
         )}
       </View>
-
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
+    height: 88,
+    paddingTop: 40,
+    paddingHorizontal: 18,
+    backgroundColor: '#FFFFFF',
+    borderBottomWidth: 1,
+    borderBottomColor: '#F1F5F9',
+
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    paddingHorizontal: 4,
-    paddingVertical: 12,
-    paddingTop: 50,
-    backgroundColor: '#fff',
-    borderBottomWidth: 0.5,
-    borderBottomColor: '#e0e0e0',
-    marginBottom: 14,
   },
+
   left: {
     flexDirection: 'row',
     alignItems: 'center',
     flex: 1,
-    gap: 8,
   },
+
   right: {
     flexDirection: 'row',
     alignItems: 'center',
-    gap: 4,
   },
-  iconBtn: {
-    padding: 6,
+
+  iconButton: {
+    padding: 8,
+    borderRadius: 10,
   },
-  logoRow: {
+
+  logoContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    gap: 6,
   },
+
   logoText: {
-    fontSize: 20,
-    fontWeight: '600',
-    color: '#1a1a1a',
+    marginLeft: 8,
+    fontSize: 19,
+    fontWeight: '700',
+    color: '#0F172A',
+    letterSpacing: 0.2,
   },
+
   title: {
     fontSize: 20,
-    fontWeight: '600',
-    color: '#1a1a1a',
+    fontWeight: '700',
+    color: '#0F172A',
   },
 });

@@ -8,6 +8,7 @@ import { router } from 'expo-router';
 import { COLORS, GAS_THRESHOLD } from '../constants';
 import { subscribeToGasLevel } from '../services/firebase';
 import React from 'react';
+import AppHeader from '@/components/AppHeader';
 
 export default function AlertScreen() {
   const [ppm, setPpm] = useState<number | null>(null);
@@ -60,6 +61,7 @@ export default function AlertScreen() {
       style={styles.container}
       contentContainerStyle={styles.content}
     >
+      <AppHeader sensorOnline />
       {/* Icon */}
       <View style={styles.iconCircle}>
         <Ionicons name="warning" size={52} color="#501313" />

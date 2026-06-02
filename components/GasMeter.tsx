@@ -1,6 +1,7 @@
 import { View, Text, StyleSheet } from 'react-native';
 import Svg, { Circle } from 'react-native-svg';
 import { GAS_THRESHOLD, COLORS } from '../constants';
+import React from 'react';
 
 type Props = {
   value: number;

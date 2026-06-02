@@ -6,7 +6,17 @@
  * Copy ngrok URL → SERVER_PUBLIC_URL in .env
  */
 
-require('dotenv').config({ path: require('path').join(__dirname, '../.env') });
+require('dotenv').config({ path: require('path').join(__dirname, './.env') });
+
+
+
+// 2. Now it is safe to log the loaded variables
+console.log('--- Twilio credentials check ---');
+console.log('SID:', process.env.TWILIO_ACCOUNT_SID ? process.env.TWILIO_ACCOUNT_SID.slice(0, 8) + '...' : 'undefined');
+console.log('Token:', process.env.TWILIO_AUTH_TOKEN ? 'Loaded (masked)' : 'undefined');
+console.log('From:', process.env.TWILIO_PHONE_FROM);
+console.log('To:', process.env.TWILIO_PHONE_TO);
+console.log('--------------------------------');
 
 const express = require('express');
 const cors = require('cors');
@@ -80,15 +90,6 @@ app.get('/api/history', async (req, res) => {
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
-});
-
-// ── Safe alert — gas returned to normal ───────────────────────────────────
-app.post('/api/safe-alert', async (req, res) => {
-  const { sendSafeNotification } = require('./twilio');
-  const ppm = req.body.ppm || 0;
-  console.log(`✅ Safe alert triggered: ${ppm} ppm`);
-  const result = await sendSafeNotification(ppm);
-  res.json({ sms: result });
 });
 
 // ── Manual test endpoint — trigger a fake alert (dev only) ────────────────

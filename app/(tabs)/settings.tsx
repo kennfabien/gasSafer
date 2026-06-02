@@ -9,6 +9,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { COLORS, GAS_THRESHOLD, APP_NAME, USSD_CODE } from '../../constants';
 import { getCurrentGasLevel } from '../../services/firebase';
 import React from 'react';
+import AppHeader from '@/components/AppHeader';
 
 const BACKEND_URL = 'https://jacket-astonish-charity.ngrok-free.dev';
 
@@ -102,6 +103,11 @@ export default function Settings() {
 
   return (
     <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
+
+<AppHeader sensorOnline />
+
+
+      
       <Text style={styles.title}>Settings</Text>
 
       {/* Backend status */}

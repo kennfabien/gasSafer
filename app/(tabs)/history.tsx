@@ -7,6 +7,7 @@ import { Ionicons } from '@expo/vector-icons';
 import { COLORS, GAS_THRESHOLD } from '../../constants';
 import { fetchHistory } from '../../services/firebase';
 import React from 'react';
+import AppHeader from '@/components/AppHeader';
 
 type Filter = 'All' | 'Safe' | 'Leak';
 
@@ -84,6 +85,7 @@ export default function History() {
         />
       }
     >
+      <AppHeader sensorOnline />
       <Text style={styles.title}>History</Text>
       <Text style={styles.subtitle}>
         Pull down to refresh · {readings.length} total readings
